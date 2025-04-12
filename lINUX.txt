@@ -1,0 +1,32 @@
+to N(M<N)
+echo "Enter the value of M:"
+read M
+echo "Enter the value of N:"
+read N
+
+# Validate input
+if [ $M -lt 2 ]; then
+    M=2  # Start from the first prime number if M is less than 2
+fi
+
+echo "Prime numbers between $M and $N are:"
+
+# Loop through each number from M to N
+for (( num=M; num<=N; num++ )); do
+    is_prime=1  # Assume the number is prime
+
+    # Check for factors from 2 to the square root of num
+    for (( i=2; i*i<=num; i++ )); do
+        if (( num % i == 0 )); then
+            is_prime=0  # Not a prime number
+            break
+        fi
+    done
+
+    # If is_prime is still 1, then num is a prime number
+    if (( is_prime == 1 )); then
+        echo $num
+
+
+    fi
+done
